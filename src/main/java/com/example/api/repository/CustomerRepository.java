@@ -16,12 +16,6 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
 			+ "AND (:email is null or upper(c.email) = :email) "
 			+ "AND (:uf is null or upper(a.uf) = :uf) " 
 			+ "AND (:locality is null or upper(a.locality) = :locality) " )
-//	@Query(value = "SELECT * FROM Adresse a " + "join c.Customer c " + " WHERE a.id_customer = c.id "
-//			+ "OR (:name is null or upper(c.name) = :name) "
-//			+ "OR (:gender is null or c.gender = :gender)" 
-//			+ "OR (:email is null or upper(c.email) = :email) "
-//			+ "OR (:uf is null or upper(a.uf) = :uf) " 
-//			+ "OR (:locality is null or upper(a.locality) = :locality) ", nativeQuery = true)
 	Page<Customer> findAllByFilter(@Param(value = "name") String name, 
 			@Param(value = "gender") String gender,
 			@Param(value = "email") String email, 
