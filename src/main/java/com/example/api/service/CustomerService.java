@@ -3,28 +3,36 @@ package com.example.api.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.api.domain.dto.FilterDTO;
+import com.example.api.repository.CustomerRepository;
+import lombok.AllArgsConstructor;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.api.domain.Customer;
-import com.example.api.repository.CustomerRepository;
 
 @Service
+@AllArgsConstructor
 public class CustomerService {
 
-	private CustomerRepository repository;
+	CustomerRepository repository;
 
-	@Autowired
-	public CustomerService(CustomerRepository repository) {
-		this.repository = repository;
+	public Page<Customer> findAll(Pageable pageable) {
+		return repository.findAllByOrderByNameAsc(pageable);
 	}
 
-	public List<Customer> findAll() {
-		return repository.findAllByOrderByNameAsc();
+	public Page<Customer> findAllByFilter(FilterDTO filter, Pageable pageable) {
+		return repository.findAllByFilter(filter.getName() == null ? null : filter.getName().toUpperCase(), filter.getGender(), filter.getEmail() == null ? null : filter.getEmail().toUpperCase(), pageable);
 	}
 
 	public Optional<Customer> findById(Long id) {
 		return repository.findById(id);
+	}
+
+	public void delete(Long id) {
+		repository.deleteById(id);
 	}
 
 }

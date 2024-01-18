@@ -3,3 +3,5 @@ INSERT INTO customer (id, name, email, gender) VALUES (2, 'Thor', 'thor@vingador
 INSERT INTO customer (id, name, email, gender) VALUES (3, 'Viuva Negra', 'viuva@vingadores.com', 'F');
 INSERT INTO customer (id, name, email, gender) VALUES (4, 'Namor', 'namor@vingadores.com', 'M');
 INSERT INTO customer (id, name, email, gender) VALUES (5, 'Gamora', 'gamora@vingadores.com', 'F');
+INSERT INTO customer (id, name, email, gender) VALUES (6, 'Thor', 'thor@vingadores.com', 'M');
+INSERT INTO customer (id, name, email, gender) VALUES (7, 'Hulk', 'hulk@vingadores.com', 'M');
