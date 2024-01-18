@@ -2,7 +2,6 @@ package com.example.api.web.rest;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
 import com.example.api.domain.Customer;
 import com.example.api.domain.dto.CustomerDTO;
@@ -43,8 +41,7 @@ public class CustomerController {
 
 	@GetMapping("/{id}")
 	public Customer findById(@PathVariable Long id) {
-		return service.findById(id)
-				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer not found"));
+		return service.findById(id);
 	}
 
 	@PostMapping

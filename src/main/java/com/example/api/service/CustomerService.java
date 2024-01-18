@@ -1,14 +1,10 @@
 package com.example.api.service;
 
-import java.util.Optional;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.example.api.domain.Adresse;
 import com.example.api.domain.Customer;
-import com.example.api.domain.dto.AdresseDTO;
 import com.example.api.domain.dto.CustomerDTO;
 import com.example.api.domain.dto.FilterDTO;
 import com.example.api.handlers.BusinessException;
@@ -23,8 +19,6 @@ public class CustomerService {
 
 	private CustomerRepository repository;
 
-	private AdresseService adresseService;
-
 	public Page<Customer> findAll(Pageable pageable) {
 		return repository.findAllByOrderByNameAsc(pageable);
 	}
@@ -34,8 +28,8 @@ public class CustomerService {
 				filter.getGender(), filter.getEmail() == null ? null : filter.getEmail().toUpperCase(), pageable);
 	}
 
-	public Optional<Customer> findById(Long id) {
-		return repository.findById(id);
+	public Customer findById(Long id) {
+		return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found by email"));
 	}
 
 	public void create(CustomerDTO dto) {
@@ -47,13 +41,13 @@ public class CustomerService {
 
 		repository.save(customer);
 
-		createAdresse(dto.getAdresse(), customer);
+//		createAdresse(dto.getAdresse(), customer);
 
 	}
 
 	public void update(CustomerDTO dto) {
 
-		var customer = findCustomerById(dto.getId());
+		var customer = findById(dto.getId());
 
 		existsByEmailUpdate(dto);
 
@@ -61,7 +55,7 @@ public class CustomerService {
 
 		repository.save(customer);
 
-		createAdresse(dto.getAdresse(), customer);
+//		createAdresse(dto.getAdresse(), customer);
 
 	}
 
@@ -70,14 +64,10 @@ public class CustomerService {
 	}
 
 	// privates
-
-	private Adresse createAdresse(AdresseDTO dto, Customer customer) {
-		return adresseService.create(dto, customer);
-	}
-
-	private Customer findCustomerById(Long id) {
-		return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found by email"));
-	}
+//
+//	private Adresse createAdresse(AdresseDTO dto, Customer customer) {
+//		return adresseService.create(dto, customer);
+//	}
 
 	private void existsByEmailUpdate(CustomerDTO dto) {
 

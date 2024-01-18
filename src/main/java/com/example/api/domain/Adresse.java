@@ -10,7 +10,6 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,31 +29,31 @@ public class Adresse {
 
 	@Column(nullable = false)
 	@NotEmpty
-	@JsonProperty("cep")
+//	@JsonProperty("cep")
 	private String zipCode;
 
 	@Column(nullable = false)
 	@NotEmpty
-	@JsonProperty("logradouro")
+//	@JsonProperty("logradouro")
 	private String publicPlace;
 
 	@Column(nullable = false)
-	@JsonProperty("complemento")
+//	@JsonProperty("complemento")
 	private String complement;
 
 	@Column(nullable = false)
 	@NotEmpty
-	@JsonProperty("bairro")
+//	@JsonProperty("bairro")
 	private String district;
 
 	@Column(nullable = false)
 	@NotEmpty
-	@JsonProperty("localidade")
+//	@JsonProperty("localidade")
 	private String locality;
 
 	@Column(nullable = false)
 	@NotEmpty
-	@JsonProperty("uf")
+//	@JsonProperty("uf")
 	private String uf;
 
 	@ManyToOne
