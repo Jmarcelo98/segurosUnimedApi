@@ -1,10 +1,8 @@
 package com.example.api.domain.dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 
 @Data
 @AllArgsConstructor
@@ -12,11 +10,13 @@ import lombok.NoArgsConstructor;
 public class CustomerDTO {
 
 	private Long id;
-	
-    private String name;
 
-    private String email;
+	private String name;
 
-    private String gender;
+	private String email;
+
+	private String gender;
+
+	private AdresseDTO adresse;
 
 }

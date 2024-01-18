@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -40,9 +42,9 @@ public class Customer {
 	@Column(nullable = false)
 	@NotEmpty
 	private String gender;
-	
-	@OneToMany(mappedBy = "customer", orphanRemoval = false)
-	private List<Adresse> adresses;
 
+	@OneToMany(mappedBy = "customer", orphanRemoval = false)
+	@JsonManagedReference
+	private List<Adresse> adresses;
 
 }

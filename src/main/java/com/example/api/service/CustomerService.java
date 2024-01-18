@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.api.domain.Adresse;
 import com.example.api.domain.Customer;
-import com.example.api.domain.dto.CepConsultDTO;
+import com.example.api.domain.dto.AdresseDTO;
 import com.example.api.domain.dto.CustomerDTO;
 import com.example.api.domain.dto.FilterDTO;
 import com.example.api.handlers.BusinessException;
@@ -46,8 +46,8 @@ public class CustomerService {
 				.build();
 
 		repository.save(customer);
-		
-//		createAdresse(null, null)
+
+		createAdresse(dto.getAdresse(), customer);
 
 	}
 
@@ -61,6 +61,8 @@ public class CustomerService {
 
 		repository.save(customer);
 
+		createAdresse(dto.getAdresse(), customer);
+
 	}
 
 	public void delete(Long id) {
@@ -69,8 +71,8 @@ public class CustomerService {
 
 	// privates
 
-	private Adresse createAdresse(CepConsultDTO dto, Customer customer) {
-		return adresseService.create(dto,customer);
+	private Adresse createAdresse(AdresseDTO dto, Customer customer) {
+		return adresseService.create(dto, customer);
 	}
 
 	private Customer findCustomerById(Long id) {
