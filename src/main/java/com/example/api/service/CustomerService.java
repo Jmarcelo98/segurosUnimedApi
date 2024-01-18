@@ -24,8 +24,15 @@ public class CustomerService {
 	}
 
 	public Page<Customer> findAllByFilter(FilterDTO filter, Pageable pageable) {
+//		var a = repository.findAllByFilter(filter.getName() == null ? null : filter.getName().toUpperCase(),
+//				filter.getGender(), filter.getEmail() == null ? null : filter.getEmail().toUpperCase(),
+//				filter.getUf() == null ? null : filter.getUf().toUpperCase(),
+//				filter.getLocality() == null ? null : filter.getLocality().toUpperCase(), pageable);
+//		System.err.println(a.getContent());
 		return repository.findAllByFilter(filter.getName() == null ? null : filter.getName().toUpperCase(),
-				filter.getGender(), filter.getEmail() == null ? null : filter.getEmail().toUpperCase(), pageable);
+				filter.getGender(), filter.getEmail() == null ? null : filter.getEmail().toUpperCase(),
+				filter.getUf() == null ? null : filter.getUf().toUpperCase(),
+				filter.getLocality() == null ? null : filter.getLocality().toUpperCase(), pageable);
 	}
 
 	public Customer findById(Long id) {

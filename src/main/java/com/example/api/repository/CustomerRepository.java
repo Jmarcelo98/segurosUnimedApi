@@ -10,10 +10,24 @@ import com.example.api.domain.Customer;
 
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
-	@Query(value = "SELECT c FROM Customer c " + "WHERE (:name is null or upper(c.name) = :name) "
-			+ "AND (:gender is null or c.gender = :gender)" + "AND (:email is null or upper(c.email) = :email)")
-	Page<Customer> findAllByFilter(@Param(value = "name") String name, @Param(value = "gender") String gender,
-			@Param(value = "email") String email, Pageable pageable);
+	@Query(value = "SELECT c FROM Customer c " + "LEFT JOIN c.adresses a "
+			+ "WHERE (:name is null or upper(c.name) = :name) "
+			+ "AND (:gender is null or c.gender = :gender)" 
+			+ "AND (:email is null or upper(c.email) = :email) "
+			+ "AND (:uf is null or upper(a.uf) = :uf) " 
+			+ "AND (:locality is null or upper(a.locality) = :locality) " )
+//	@Query(value = "SELECT * FROM Adresse a " + "join c.Customer c " + " WHERE a.id_customer = c.id "
+//			+ "OR (:name is null or upper(c.name) = :name) "
+//			+ "OR (:gender is null or c.gender = :gender)" 
+//			+ "OR (:email is null or upper(c.email) = :email) "
+//			+ "OR (:uf is null or upper(a.uf) = :uf) " 
+//			+ "OR (:locality is null or upper(a.locality) = :locality) ", nativeQuery = true)
+	Page<Customer> findAllByFilter(@Param(value = "name") String name, 
+			@Param(value = "gender") String gender,
+			@Param(value = "email") String email, 
+			@Param(value = "uf") String uf,
+			@Param(value = "locality") String locality, 
+			Pageable pageable);
 
 	Page<Customer> findAllByOrderByNameAsc(Pageable pageable);
 

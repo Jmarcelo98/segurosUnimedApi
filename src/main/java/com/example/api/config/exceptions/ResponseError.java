@@ -1,4 +1,4 @@
-package com.example.api.config;
+package com.example.api.config.exceptions;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

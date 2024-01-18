@@ -14,4 +14,8 @@ public class FilterDTO {
     private String email;
 
     private String gender;
+    
+    private String locality;
+    
+    private String uf;
 }

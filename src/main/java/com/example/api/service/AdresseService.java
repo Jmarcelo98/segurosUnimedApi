@@ -1,5 +1,7 @@
 package com.example.api.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.example.api.domain.Adresse;
@@ -30,6 +32,10 @@ public class AdresseService {
 
 	}
 
+	public List<String> getAllUf() {
+		return repository.findAllUf();	
+	}
+	
 	public void update(AdresseDTO dto) {
 
 		var adresse = repository.findById(dto.getId())

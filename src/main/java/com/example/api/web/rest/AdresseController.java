@@ -1,7 +1,10 @@
 package com.example.api.web.rest;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +26,11 @@ import lombok.AllArgsConstructor;
 public class AdresseController {
 
 	private AdresseService service;
+
+	@GetMapping("/uf")
+	public List<String> getAllUf() {
+		return service.getAllUf();
+	}
 
 	@PostMapping(value = "/{id}")
 	public void create(@RequestBody AdresseDTO dto, @PathVariable Long id) {
