@@ -1,7 +1,6 @@
 ### Para acessar o Swagger
 
-1.
-2. Acesse: `http://localhost:8080/swagger-ui.html#/`
+1. Acesse: `http://localhost:8080/swagger-ui.html#/`
 
 # Custumer Service
 
